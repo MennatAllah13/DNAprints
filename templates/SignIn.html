@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -34,6 +35,7 @@
     <script src="../static/scripts/modernizer.js"></script>
     <!-- [if lt IE 9] -->
 </head>
+
 <body>
     <div id="preloader" style="background-color: white;">
         <img class="preloader" src="../static/images/loaders/DNA.gif" alt="">
@@ -51,7 +53,8 @@
                         </div>
                         <div class="info-inner">
                             <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                            <span class="iconcont"><a data-scroll href="mailto:info@yoursite.com">Dnaprints@gmail.com</a></span>
+                            <span class="iconcont"><a data-scroll
+                                    href="mailto:info@yoursite.com">Dnaprints@gmail.com</a></span>
                         </div>
                         <div class="info-inner">
                             <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
@@ -65,7 +68,9 @@
             <div class="container">
                 <nav class="main-menu">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i class="fa fa-bars"
+                                aria-hidden="true"></i></button>
                     </div>
 
                     <div id="navbar" class="navbar-collapse collapse">
@@ -87,8 +92,8 @@
     </header>
     <div id="login-box">
         <div class="left">
-            <h2>Welcome again, Sign in  now </h2>
-            <form class="inputs" method="POST" onsubmit="return validateForm()"  action="{{ url_for('login') }}">
+            <h2>Welcome again, Sign in now </h2>
+            <form class="inputs" method="POST" onsubmit="return validateForm()" action="{{ url_for('login') }}">
                 <input type="email" name="Email" placeholder="E-mail" />
                 <input type="password" name="password" placeholder="Password" />
                 <div class="forgetpassword">
@@ -139,7 +144,8 @@
                         <div class="subcriber-box">
                             <form id="mc-form" class="mc-form">
                                 <div class="newsletter-form">
-                                    <input type="email" autocomplete="off" id="mc-email" placeholder="Email address" class="form-control" style="height:50px;" name="EMAIL">
+                                    <input type="email" autocomplete="off" id="mc-email" placeholder="Email address"
+                                        class="form-control" style="height:50px;" name="EMAIL">
                                     <button class="mc-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
                                     <div class="clearfix"></div>
                                     <!-- mailchimp-alerts Start -->
@@ -192,4 +198,5 @@
     <!-- all plugins -->
     <script src="../static/scripts/custom.js"></script>
 </body>
+
 </html>
