@@ -9,3 +9,13 @@ app.config["DEBUG"] = True
 @app.route('/home')
 def home():
     return render_template('Home.html')
+
+
+@app.route('/sign')
+def sign():
+    return render_template('SignUp.html')
+
+
+@app.route('/signIn')
+def log():
+    return render_template('SignIn.html')
