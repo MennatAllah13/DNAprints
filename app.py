@@ -1,11 +1,14 @@
-from flask import Flask, render_template, request, session
 import re
-from flask_mysqldb import MySQL
+
 import MySQLdb.cursors
+from flask import Flask, render_template, request, session
+from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
 app.config["DEBUG"] = True
+
+app.secret_key = 'your secret key'
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -60,11 +63,11 @@ def SignUp():
                 return render_template('SignUp.html', msg=msg)
 
             elif not re.match(r'[A-Za-z]+', FirstName):
-                msg = 'First Name must contain only characters and numbers !'
+                msg = 'First Name must contain only characters!'
                 return render_template('SignUp.html', msg=msg)
 
             elif not re.match(r'[A-Za-z]+', LastName):
-                msg = 'Last Name must contain only characters and numbers !'
+                msg = 'Last Name must contain only characters!'
                 return render_template('SignUp.html', msg=msg)
 
             elif password != cpassword:
@@ -122,3 +125,11 @@ def login():
             return render_template('SignIn.html')
     else:
         return render_template('SignIn.html')
+
+
+@app.route('/logout')
+def Logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    return render_template('Home.html')
