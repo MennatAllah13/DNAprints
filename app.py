@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import re
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
@@ -85,3 +85,40 @@ def SignUp():
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
         return render_template('SignUp.html', msg)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    if request.method == 'POST' and 'Email' in request.form and 'password' in request.form:
+        email = request.form['Email']
+        password = request.form['password']
+        cursor.execute(
+            'SELECT * FROM user WHERE email = % s AND password = % s', (email, password))
+        result = cursor.fetchone()
+        print("all : ", result)
+        if result:
+            session['loggedin'] = True
+            session['id'] = result['id']
+            session['FName'] = result['FirstName']
+            session['LName'] = result['LastName']
+            session['gender'] = result['gender']
+            session['phone'] = result['phone']
+            session['age'] = result['age']
+            session['type'] = result['usertype_id']
+            session['email'] = email
+
+            if session['type'] == 1:
+                session['user'] = "Admin"
+                return render_template('AdminProfile.html', info={session['FName'], session['LName'], session['gender'], session['age'], session['phone'], session['email'], session['user']})
+            elif session['type'] == 2:
+                session['user'] = "Doctor"
+                return render_template('DoctorProfile.html', info={session['FName'], session['LName'], session['gender'], session['age'], session['phone'], session['email'], session['user']})
+            elif session['type'] == 3:
+                session['user'] = "Client"
+                return render_template('ClientProfile.html', info={session['FName'], session['LName'], session['gender'], session['age'], session['phone'], session['email'], session['user']})
+        else:
+            return render_template('SignIn.html')
+    else:
+        return render_template('SignIn.html')
